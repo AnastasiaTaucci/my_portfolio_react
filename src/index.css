@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: #0a0a0a;
+  color: #f3f3f3;
+}
+
+@layer utilities {
+  @keyframes loading {
+    0% {
+      transform : translateX(-100%);
+    }
+    100% {
+      transform: translateX(250%);
+    }
+  }
+
+  .animate-loading-bar {
+    animation: loading 1.8s ease infinite;
+  }
+}
