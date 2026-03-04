@@ -1,16 +1,18 @@
-import './App.css'
-import LoadingScreen from './components/LoadingScreen'
-import { useState } from 'react';
+import "./App.css";
+import LoadingScreen from "./components/LoadingScreen";
+import NavBar from "./components/NavBar";
+import MobileMenu from "./components/MobileMenu";
+import { useState } from "react";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <>
-      {
-        !isLoaded && < LoadingScreen onComplete={() => setIsLoaded(true)}/>
-      }
+      {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
       <div
-        className = {`
+        className={`
           min-h-screen 
           transition-opacity 
           duration-700 
@@ -19,14 +21,14 @@ function App() {
           text-gray-100
         `}
       >
-        
+        <NavBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       </div>
     </>
-  )
+  );
 }
 
-export default App
-
+export default App;
 
 // !isLoaded && < LoadingScreen onComplete={() => setIsLoaded(true)}/>
 // isLoaded || < LoadingScreen onComplete={() => setIsLoaded(true)}/>
