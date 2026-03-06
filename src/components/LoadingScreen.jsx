@@ -28,8 +28,8 @@ function LoadingScreen({ onComplete }) {
         {text} <span className="animate-blink ml-1"> | </span>
       </div>
 
-      <div className="w-[200px] h-[2px] bg-gray-800 rounded overflow-hidden">
-        <div className="w-[40%] h-full bg-blue-500 shadow-[0_0_15px_#3b82f6] animate-loading-bar"></div>
+      <div className="w-[300px] h-[2px] bg-gray-800 rounded overflow-hidden">
+        <div className="w-[40%] h-full bg-gradient-to-r from-purple-500 to-purple-700 shadow-[0_0_20px_#c084fc] animate-loading-bar"></div>
       </div>
     </div>
   );
