@@ -5,7 +5,7 @@ function Home() {
       className="min-h-screen flex items-center justify-center relative"
     >
       <div className="text-center z-10 px-4">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent leading-tight">
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-lime-400 to-purple-600 bg-clip-text text-transparent leading-tight">
           Hi, I'm Anastasia Taucci
         </h1>
 
@@ -24,7 +24,7 @@ function Home() {
           </a>
           <a
             href="#contact"
-            className="border border-purple-500/65 text-purple-400 py-3 px-6 rounded-lg font-medium transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(147, 51, 234, 0.2)]  hover:bg-purple-400/10"
+            className="border border-lime-500/65 text-lime-400 py-3 px-6 rounded-lg font-medium transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(163,230,53,0.6)]  hover:bg-lime-400 hover:text-white"
           >
             Contact Me
           </a>

@@ -115,15 +115,15 @@ function About() {
                   <span
                     key={key}
                     className="
-                                        bg-purple-500/10
-                                        text-purple-300
+                                        bg-purple-500/20
+                                        text-lime-400
                                         py-1
                                         px-2.5
                                         rounded-full
                                         text-sm
                                         hover:bg-purple-500/20
                                         border
-                                        border-purple-500/20
+                                        border-lime-500/20
                                         transition
                                     "
                   >
@@ -161,8 +161,8 @@ function About() {
                   <span
                     key={key}
                     className="
-                                        bg-purple-500/10
-                                        text-purple-300
+                                        bg-purple-500/20
+                                        text-lime-400
                                         py-1
                                         px-2.5
                                         rounded-full
