@@ -1,3 +1,5 @@
+import RevealOnScroll from "../RevealOnScroll";
+
 function About() {
   const frontendSkills = [
     "React",
@@ -21,16 +23,17 @@ function About() {
             py-24 
         "
     >
-      <div
-        className="
+      <RevealOnScroll>
+        <div
+          className="
                     max-w-3xl 
                     mx-auto 
                     px-4
                     space-y-8
                 "
-      >
-        <h2
-          className="
+        >
+          <h2
+            className="
                     text-3xl
                     md:text-4xl
                     font-bold
@@ -42,12 +45,12 @@ function About() {
                     text-transparent
                     text-center
                 "
-        >
-          About Me
-        </h2>
+          >
+            About Me
+          </h2>
 
-        <div
-          className="
+          <div
+            className="
                     rounded-xl 
                     p-8 
                     border-white/10 
@@ -55,9 +58,9 @@ function About() {
                     hover:-translate-y-1
                     transition
                 "
-        >
-          <p
-            className="
+          >
+            <p
+              className="
                         text-gray-300
                         max-w-2xl
                         text-center
@@ -65,56 +68,56 @@ function About() {
                         mb-6    
                         leading-relaxed
                     "
-          >
-            Software developer with a background in healthcare and biochemistry,
-            building web and mobile applications using JavaScript, React, and
-            React Native. After six years working in the healthcare industry, I
-            transitioned into software development and graduated from Bellevue
-            College with a degree in Software Development. My work focuses on
-            creating practical tools that help people learn and stay organized,
-            including applications for flashcard-based learning, movie tracking,
-            and managing Spanish learning resources. I enjoy collaborating with
-            others and continuously learning new technologies to build better
-            solutions.
-          </p>
+            >
+              Software developer with a background in healthcare and
+              biochemistry, building web and mobile applications using
+              JavaScript, React, and React Native. After six years working in
+              the healthcare industry, I transitioned into software development
+              and graduated from Bellevue College with a degree in Software
+              Development. My work focuses on creating practical tools that help
+              people learn and stay organized, including applications for
+              flashcard-based learning, movie tracking, and managing Spanish
+              learning resources. I enjoy collaborating with others and
+              continuously learning new technologies to build better solutions.
+            </p>
 
-          <div
-            className="
+            <div
+              className="
                         grid 
                         grid-cols-1
                         md:grid-cols-2
                         gap-12
                     "
-          >
-            {/* FrontEnd skills list */}
-            <div
-              className="
+            >
+              {/* FrontEnd skills list */}
+              <div
+                className="
                             rounded-xl 
                             p-6 
                             hover:-translate-y-1 
                             transition
                         "
-            >
-              <h3
-                className="
+              >
+                <h3
+                  className="
                                 text-xl 
                                 font-bold 
                                 mb-4
                             "
-              >
-                Frontend
-              </h3>
-              <div
-                className="
+                >
+                  Frontend
+                </h3>
+                <div
+                  className="
                                 flex
                                 flex-wrap
                                 gap-2
                             "
-              >
-                {frontendSkills.map((skill, key) => (
-                  <span
-                    key={key}
-                    className="
+                >
+                  {frontendSkills.map((skill, key) => (
+                    <span
+                      key={key}
+                      className="
                                         bg-purple-500/20
                                         text-lime-400
                                         py-1
@@ -126,41 +129,41 @@ function About() {
                                         border-lime-500/20
                                         transition
                                     "
-                  >
-                    {skill}
-                  </span>
-                ))}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-            {/* BackEnd skills list */}
-            <div
-              className="
+              {/* BackEnd skills list */}
+              <div
+                className="
                             rounded-xl 
                             p-6 
                             hover:-translate-y-1 
                             transition
                         "
-            >
-              <h3
-                className="
+              >
+                <h3
+                  className="
                                 text-xl 
                                 font-bold 
                                 mb-4
                             "
-              >
-                Backend
-              </h3>
-              <div
-                className="
+                >
+                  Backend
+                </h3>
+                <div
+                  className="
                                 flex
                                 flex-wrap
                                 gap-2
                             "
-              >
-                {backendSkills.map((skill, key) => (
-                  <span
-                    key={key}
-                    className="
+                >
+                  {backendSkills.map((skill, key) => (
+                    <span
+                      key={key}
+                      className="
                                         bg-purple-500/20
                                         text-lime-400
                                         py-1
@@ -172,17 +175,17 @@ function About() {
                                         border-purple-500/20
                                         transition
                                     "
-                  >
-                    {skill}
-                  </span>
-                ))}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-      <div
-        className="
+          <div
+            className="
                     p-6
                     rounded-xl
                     border-white/10
@@ -190,35 +193,36 @@ function About() {
                     hover:-translate-y-1
                     transition
                 "
-      >
-        <h3
-          className="
+          >
+            <h3
+              className="
                         text-xl 
                         font-bold 
                         mb-4
                     "
-        >
-          Education
-        </h3>
+            >
+              Education
+            </h3>
 
-        <ul
-          className="
+            <ul
+              className="
                         list-disc 
                         list-inside 
                         text-gray-300 
                         space-y-2   
                     "
-        >
-          <li>
-            <strong> AAS in Software Development </strong> - Bellevue College
-            (2024-2025)
-          </li>
-          <li>
-            Relevant Coursework: SQL, Web Development, Mobile Development...
-          </li>
-        </ul>
-      </div>
-      </div>
+            >
+              <li>
+                <strong> AAS in Software Development </strong> - Bellevue
+                College (2024-2025)
+              </li>
+              <li>
+                Relevant Coursework: SQL, Web Development, Mobile Development...
+              </li>
+            </ul>
+          </div>
+        </div>
+      </RevealOnScroll>
     </section>
   );
 }
