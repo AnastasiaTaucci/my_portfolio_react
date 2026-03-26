@@ -9,15 +9,16 @@ function Contact() {
     message: "",
   });
 
-  const SERVICE_ID = "service_drr0mml";
-  const TEMPLATE_ID = "template_x0jkz3a";
-  const PUBLIC_KEY = "aK3koF-RhAHHmHi2t";
-
-  const handelSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     emailjs
-      .sendForm(SERVICE_ID, TEMPLATE_ID, e.target, PUBLIC_KEY)
+      .sendForm(
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
+        e.target,
+        import.meta.env.VITE_PUBLIC_KEY,
+      )
       .then((result) => {
         alert("Message Sent!");
         setFormData({ name: "", email: "", message: "" });
@@ -48,7 +49,7 @@ function Contact() {
           >
             Get In Touch
           </h2>
-          <form className="space-y-6" onSubmit={handelSubmit}>
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="relative">
               <input
                 type="text"
