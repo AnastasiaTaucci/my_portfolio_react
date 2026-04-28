@@ -9,10 +9,20 @@ function Contact() {
     message: "",
   });
 
-  const handleSubmit = (e) => {
+  const [status, setStatus] = useState("idle");
+  const [formMessage, setFormMessage] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    emailjs
+    setStatus("sending");
+    setFormMessage("");
+
+    // function for spinner for at least 0.8s
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const start = Date.now();
+
+    await emailjs
       .sendForm(
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_ID,
@@ -20,10 +30,31 @@ function Contact() {
         import.meta.env.VITE_PUBLIC_KEY,
       )
       .then((result) => {
-        alert("Message Sent!");
+        setStatus("success");
+        setFormMessage("Message sent successfully!");
         setFormData({ name: "", email: "", message: "" });
+
+        setTimeout(() => {
+          setStatus("idle");
+          setFormMessage("");
+        }, 3000);
       })
-      .catch(() => alert("Opps! Somethin went wrong. Please try again."));
+      .catch((error) => {
+        console.log(error);
+
+        setStatus("error");
+        setFormMessage("Something went wrong. Please try again.");
+
+        setTimeout(() => {
+          setStatus("idle");
+        }, 3000);
+      });
+
+      const elapsed = Date.now() - start;
+
+      if (elapsed < 800) {
+        await delay(800 - elapsed);
+      }
   };
 
   return (
@@ -93,11 +124,42 @@ function Contact() {
               ></textarea>
             </div>
 
+            {formMessage && (
+              <p
+                className={`text-sm text-center ${status === "success" ? "text-green-400" : "text-red-400"}`}
+              >
+                {formMessage}
+              </p>
+            )}
+
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white py-3 px-6 rounded font-medium transition overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)"
+              disabled={status === "sending"}
+              className={`w-full bg-blue-500 text-white py-3 px-6 rounded font-medium transition overflow-hidden
+                ${
+                  status === "success" ? "bg-green-500" :
+                  status === "error" ? "bg-red-500" : "bg-blue-500"
+                }
+                ${
+                  status === "sending" ? "opacity-70 cursor-not-allowed" : "hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
+                }
+              `}
             >
-              Send Message
+              {/* message text */}
+
+              {status === "sending" && (
+                <div className="flex items-center justify-center gap-2">
+                  <span className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin"></span>
+                  <span>Sending</span>
+                </div>
+              )}
+
+              {status === "idle" && "Send Message"}
+              {status === "success" && "Sent!"}
+              {status === "error" && "Try Again"}
+
+              
+              {}
             </button>
           </form>
         </div>
