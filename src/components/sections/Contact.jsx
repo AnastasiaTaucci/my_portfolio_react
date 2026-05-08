@@ -12,49 +12,53 @@ function Contact() {
   const [status, setStatus] = useState("idle");
   const [formMessage, setFormMessage] = useState("");
 
+  // Keeps the spinner visible for at least 0.8s
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setStatus("sending");
     setFormMessage("");
 
-    // function for spinner for at least 0.8s
-    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     const start = Date.now();
 
-    await emailjs
-      .sendForm(
+    try {
+      await emailjs.sendForm(
         import.meta.env.VITE_SERVICE_ID,
         import.meta.env.VITE_TEMPLATE_ID,
         e.target,
         import.meta.env.VITE_PUBLIC_KEY,
-      )
-      .then((result) => {
-        setStatus("success");
-        setFormMessage("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
-
-        setTimeout(() => {
-          setStatus("idle");
-          setFormMessage("");
-        }, 3000);
-      })
-      .catch((error) => {
-        console.log(error);
-
-        setStatus("error");
-        setFormMessage("Something went wrong. Please try again.");
-
-        setTimeout(() => {
-          setStatus("idle");
-        }, 3000);
-      });
+      );
 
       const elapsed = Date.now() - start;
 
       if (elapsed < 800) {
         await delay(800 - elapsed);
       }
+
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+
+      setTimeout(() => {
+        setStatus("idle");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+
+      const elapsed = Date.now() - start;
+
+      if (elapsed < 800) {
+        await delay(800 - elapsed);
+      }
+
+      setStatus("error");
+      setFormMessage("Something went wrong. Please try again.");
+
+      setTimeout(() => {
+        setStatus("idle");
+      }, 3000);
+    }
   };
 
   return (
@@ -84,7 +88,7 @@ function Contact() {
             <div className="relative">
               <input
                 type="text"
-                id="home"
+                id="name"
                 name="name"
                 required
                 value={formData.name}
@@ -124,29 +128,24 @@ function Contact() {
               ></textarea>
             </div>
 
-            {formMessage && (
-              <p
-                className={`text-sm text-center ${status === "success" ? "text-green-400" : "text-red-400"}`}
-              >
-                {formMessage}
-              </p>
-            )}
-
             <button
               type="submit"
               disabled={status === "sending"}
-              className={`w-full bg-blue-500 text-white py-3 px-6 rounded font-medium transition overflow-hidden
+              className={`w-full text-white py-3 px-6 rounded font-medium transition overflow-hidden
                 ${
-                  status === "success" ? "bg-green-500" :
-                  status === "error" ? "bg-red-500" : "bg-blue-500"
+                  status === "success"
+                    ? "bg-green-500"
+                    : status === "error"
+                      ? "bg-red-500"
+                      : "bg-blue-500"
                 }
                 ${
-                  status === "sending" ? "opacity-70 cursor-not-allowed" : "hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
+                  status === "sending"
+                    ? "opacity-70 cursor-not-allowed"
+                    : "hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
                 }
               `}
             >
-              {/* message text */}
-
               {status === "sending" && (
                 <div className="flex items-center justify-center gap-2">
                   <span className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin"></span>
@@ -157,10 +156,14 @@ function Contact() {
               {status === "idle" && "Send Message"}
               {status === "success" && "Sent!"}
               {status === "error" && "Try Again"}
-
-              
-              {}
             </button>
+
+            {/* message text */}
+            {formMessage && (
+              <p className={"text-sm text-center text-red-400"}>
+                {formMessage}
+              </p>
+            )}
           </form>
         </div>
       </RevealOnScroll>
