@@ -37,8 +37,8 @@ function Contact() {
         await delay(800 - elapsed);
       }
 
-      setStatus("success");
       setFormData({ name: "", email: "", message: "" });
+      setStatus("success");
 
       setTimeout(() => {
         setStatus("idle");
@@ -53,7 +53,15 @@ function Contact() {
       }
 
       setStatus("error");
-      setFormMessage("Something went wrong. Please try again.");
+      if (!navigator.onLine) {
+        setFormMessage(
+          "You appear to be offline. Please check your connection and try again.",
+        );
+      } else {
+        setFormMessage(
+          "Something went wrong. Please try again or email me directly.",
+        );
+      }
 
       setTimeout(() => {
         setStatus("idle");
@@ -85,26 +93,40 @@ function Contact() {
             Get In Touch
           </h2>
           <form className="space-y-6" onSubmit={handleSubmit}>
-            <div className="relative">
+            <div>
+              <label
+                for="name"
+                className="block mb-2 text-sm font-medium text-gray-300"
+              >
+                Name:
+              </label>
               <input
                 type="text"
                 id="name"
                 name="name"
                 required
+                minLength={2}
                 value={formData.name}
                 className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5 "
-                placeholder="Name..."
+                placeholder="Your name..."
                 onChange={(e) =>
                   setFormData({ ...formData, name: e.target.value })
                 }
               ></input>
             </div>
-            <div className="relative">
+            <div>
+              <label
+                for="email"
+                className="block mb-2 text-sm font-medium text-gray-300"
+              >
+                Email:
+              </label>
               <input
                 type="email"
                 id="email"
                 name="email"
                 required
+                pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                 value={formData.email}
                 className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5 "
                 placeholder="example@gmail.com"
@@ -113,15 +135,22 @@ function Contact() {
                 }
               ></input>
             </div>
-            <div className="relative">
+            <div>
+              <label
+                for="message"
+                className="block mb-2 text-sm font-medium text-gray-300"
+              >
+                Message:
+              </label>
               <textarea
                 id="message"
                 name="message"
                 required
                 value={formData.message}
                 rows={5}
+                minLength={10}
                 className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5 "
-                placeholder="Your Message..."
+                placeholder="Write your message here..."
                 onChange={(e) =>
                   setFormData({ ...formData, message: e.target.value })
                 }
