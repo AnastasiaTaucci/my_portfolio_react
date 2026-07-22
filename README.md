@@ -17,6 +17,7 @@ This project also helped me learn and practice Tailwind CSS while building a rea
 - Skills section organized by technology area
 - Resume link/button
 - Contact section with email, GitHub, and LinkedIn links
+- Contact form that sends messages using EmailJS
 - Clean navigation and mobile-friendly layout
 
 ## Tech Stack
@@ -25,6 +26,7 @@ This project also helped me learn and practice Tailwind CSS while building a rea
 - Vite
 - JavaScript
 - Tailwind CSS
+- EmailJS
 - HTML
 - CSS
 - Git
