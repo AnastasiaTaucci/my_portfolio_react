@@ -183,7 +183,8 @@ function About() {
               </div>
             </div>
           </div>
-
+          
+          {/* education section */}
           <div
             className="
                     p-6
@@ -221,6 +222,13 @@ function About() {
               </li>
             </ul>
           </div>
+          <a
+            href="../../public/Anastasia_Taucci_Resume.pdf"
+            target="_blank"
+            className="block w-fit mx-auto mt-6 px-6 py-3 rounded-lg bg-blue-500 text-white font-medium hover:bg-blue-600 hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)] transition"
+          >
+            View Resume
+          </a>
         </div>
       </RevealOnScroll>
     </section>

@@ -34,7 +34,7 @@ function NavBar({ menuOpen, setMenuOpen }) {
               href="#about"
               className="text-gray-300 hover:text-white transition-colors"
             >
-              About
+              About Me
             </a>
             <a
               href="#projects"
@@ -47,6 +47,13 @@ function NavBar({ menuOpen, setMenuOpen }) {
               className="text-gray-300 hover:text-white transition-colors"
             >
               Contact
+            </a>
+            <a
+              href="../../public/Anastasia_Taucci_Resume.pdf"
+              target="_blank"
+              className="px-4 py-2 rounded-lg border border-blue-500/50 text-blue-400 hover:bg-blue-500/10 hover:-translate-y-0.5 hover:text-blue-300 transition"
+            >
+              Resume
             </a>
           </div>
         </div>
